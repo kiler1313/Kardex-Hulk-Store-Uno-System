@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <echo>COPY NECESSARY FOR EXECUTE DOCKER IN THE APPLICATION</echo>
+  <echo>Copy file application.yml to path &apos;$ (basedir)/src/main/jib/app/config&apos;</echo>
+  <echo>This path is copied to the root of the docker when it is lifted</echo>
+  <copy file="src/main/resources/application-prod.yml" tofile="D:\Horus - Datos\Documentos\Kardex - Prueba Uno Systems\Backend\Modules\Authentication_Registry\auth-kardex-hulk-store/src/main/jib/app/config/application.yml" overwrite="true"/>
+</target>
+</project>
