@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.4.3</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<groupId>com.kardex.hulk.store.product</groupId>
+	<artifactId>products-kardex-hulk-store</artifactId>
+	<version>1.0.0</version>
+	<name>products-kardex-hulk-store</name>
+	<description>Module for Products of Kardex for Hulk Store</description>
+	<!-- Developer's Team information Jenkins -->
+	<developers>
+		<developer>
+			<name>Ruben Dario Consuegra Briceño</name>
+			<email>rconsuegrabr@gmail.com</email>
+			<roles>
+				<role>Backend Java Developer</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<!-- QA Team Information -->
+	<contributors>
+		<contributor>
+			<name>Ruben Dario Consuegra Briceño</name>
+			<email>rconsuegrabr@gmail.com</email>
+			<roles>
+				<role>QA Analist</role>
+			</roles>
+		</contributor>
+	</contributors>
+
+	<properties>
+		<java.version>11</java.version>
+		<mysql.version>8.0.22</mysql.version>
+		<jib-maven-plugin.version>0.9.11</jib-maven-plugin.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<!-- JDBC. MySQL -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.20</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>LATEST</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.5.9</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-processor</artifactId>
+			<version>LATEST</version>
+		</dependency>
+		<dependency>
+			<groupId>net.logstash.logback</groupId>
+			<artifactId>logstash-logback-encoder</artifactId>
+			<version>6.6</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api -->
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>javax.persistence-api</artifactId>
+			<version>2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-plugin-api</artifactId>
+			<version>3.8.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- JSON to Object -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.13</version>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-models</artifactId>
+			<version>1.5.20</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+		<plugins>
+			<!-- Compiler -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+
+			<!-- SpringBoot -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Docker -->
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>${jib-maven-plugin.version}</version>
+				<configuration>
+					<extraDirectory>${project.basedir}/src/main/jib</extraDirectory>
+					<from>
+						<image>openjdk:11.0.5-jre</image>
+					</from>
+					<to>
+						<image>registry.gitlab.com/kiler1313/products-kardex-hulk-store/${project.artifactId}</image>
+						<tags>
+							<tag>${project.version}</tag>
+						</tags>
+					</to>
+					<container>
+						<jvmFlags>
+							<jvmFlag>-server</jvmFlag>
+							<jvmFlag>-Xms2G</jvmFlag>
+							<jvmFlag>-Xmx2G</jvmFlag>
+							<jvmFlag>-XX:MaxMetaspaceSize=1G</jvmFlag>
+							<jvmFlag>-XX:+CMSClassUnloadingEnabled</jvmFlag>
+							<jvmFlag>-XX:+UseG1GC</jvmFlag>
+							<jvmFlag>-XX:+OptimizeStringConcat</jvmFlag>
+							<jvmFlag>-XX:+UseStringDeduplication</jvmFlag>
+							<jvmFlag>-XX:+UseLWPSynchronization</jvmFlag>
+							<jvmFlag>-Djavax.xml.accessExternalDTD=all</jvmFlag>
+							<jvmFlag>-Dfile.encoding=UTF-8</jvmFlag>
+							<jvmFlag>-Dspring.output.ansi.enabled=always</jvmFlag>
+							<jvmFlag>-Duser.timezone=America/Bogota</jvmFlag>
+							<jvmFlag>-Dspring.config.location=/app/config/</jvmFlag>
+						</jvmFlags>
+						<useCurrentTimestamp>true</useCurrentTimestamp>
+						<ports>
+							<port>8080</port>
+						</ports>
+						<format>Docker</format>
+					</container>
+				</configuration>
+			</plugin>
+
+			<!-- Copy the application.yml -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>${maven-antrun-plugin.version}</version>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<echo>COPY NECESSARY FOR EXECUTE DOCKER IN THE APPLICATION</echo>
+								<echo>
+									Copy file application.yml to path '$ (basedir)/src/main/jib/app/config'
+								</echo>
+								<echo>This path is copied to the root of the docker when it is lifted</echo>
+								<copy overwrite="true" file="src/main/resources/application-prod.yml"
+									  tofile="${basedir}/src/main/jib/app/config/application.yml"/>
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Jenkins Report HTML -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.9.0</version>
+			</plugin>
+			<!-- SpotBugs -->
+			<plugin>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-maven-plugin</artifactId>
+				<version>4.0.0</version>
+			</plugin>
+		</plugins>
+	</build>
+
+	<reporting>
+		<plugins>
+			<!--Reports-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.2</version>
+			</plugin>
+			<!-- SpotBugs-->
+			<plugin>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-maven-plugin</artifactId>
+				<version>4.0.0</version>
+			</plugin>
+		</plugins>
+	</reporting>
+
+	<!-- Personalized repositories -->
+	<repositories>
+		<repository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>https://repo.spring.io/snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>https://repo.spring.io/snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+</project>

@@ -1,0 +1,10 @@
+{
+  "codeMovii": "861ASDA",
+  "codeMo": "ASDOJ475",
+  "type":  "FIXED",
+  "amountToCollect": 2000,
+  "shopkeeperDto":  {
+    "fullname": "Pepe",
+    "phone": "3652235"
+  }
+}
