@@ -1,0 +1,66 @@
+   <!-- HEADER DESKTOP-->
+   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">
+      <h2>Hulk Store</h2>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/products">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/cart-details">Carrito</a>
+        </li>
+        <li class="nav-item dropdown mr-2">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Categorias
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+            <app-product-category-menu></app-product-category-menu>
+
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <app-login-status></app-login-status>
+        </li>
+
+        <li class="nav-item mr-4">
+          <app-cart-status></app-cart-status>
+        </li>
+
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+
+       <app-search></app-search>
+
+      </form>
+    </div>
+  </nav>
+  <!-- END HEADER DESKTOP-->
+
+
+
+ <!-- PAGE CONTAINER-->
+<div class="container-fluid">
+
+     <router-outlet></router-outlet>
+
+      <!-- END MAIN CONTENT-->
+</div>
+
+<!-- END PAGE CONTAINER-->
+
+
+<footer>
+  <ul>
+    <li><a href="#">Acerca de nosotros</a></li>
+    <li><a href="#">Contacto</a></li>
+    <li><a href="#">Ayuda</a></li>
+  </ul>
+</footer>
