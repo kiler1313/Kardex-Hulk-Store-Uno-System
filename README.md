@@ -6,12 +6,12 @@ Prueba realiza para Uno System - Kardex para la tienda Hulk Store
                                                                                                              
                                                                                                                
 
-Backend 
+# Backend 
 Spring Boot - Arquitectura Hexagonal - Microservicios
 
-Fronted 
+# Fronted 
 Angular 11 
 
-Base de datos
+# Base de datos
 Mysql
 
