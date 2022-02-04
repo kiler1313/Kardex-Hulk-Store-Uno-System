@@ -1,2 +1,3 @@
-# hexagonal-architecture
-Example repository for hexagonal architecture
+# PRODUCTOS DEL SISTEMA KARDEX - HULK STORE
+- Endpoints
+- CRUD de productos
