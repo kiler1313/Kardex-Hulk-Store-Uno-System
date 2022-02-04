@@ -1,0 +1,99 @@
+## SERVER
+server:
+  port: 8081
+  compression:
+    enabled: true
+  error:
+    include-stacktrace: never
+    whitelabel:
+      enabled: false
+
+## LOGGER
+logging:
+  level:
+    root: info
+    org.springframework: info
+    co.moviired.acquiringphysical: info
+
+## Swagger-UI
+springdoc:
+  api-docs:
+    path: /operating-credit
+  swagger-ui:
+    path: /swagger-ui.html
+  paths-to-exclude: /swagger-resources/**
+
+## APPLICATION
+spring:
+  application:
+    name: moviired-operating-credit
+    version: v1.0.0
+    log: ./logs/
+    root: /moviired-api/${spring.application.name}/{version}
+    services:
+      methods:
+        ping:
+          name: PING
+          path: /ping
+        create:
+          name: CREATE
+          path: /create
+        update:
+          name: UPDATE
+          path: /update
+        delete:
+          name: DELETE
+          path: /delete
+        find:
+          name: FIND
+          path: /find
+      names:
+        withdrawal:
+          name: WITHDRAWAL
+          path: /withdrawal
+        product:
+          name: PAYMENT
+          path: /product
+        disbursement:
+          name: DISBURSEMENT
+          path: /disbursement
+
+  main:
+    allow-bean-definition-overriding: true
+
+  datasource:
+    mysql:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbcUrl: jdbc:mysql://localhost:3306/operating_credit_product_request?allowPublicKeyRetrieval=true&autoReconnect=true&useSSL=false&serverTimezone=GMT-5
+      username: root
+      password: Moviired2021*
+      hikari:
+        pool-name: mysql-operating-credit-pools
+        auto-commit: true
+        allow-pool-suspension: false
+        connection-timeout: 60000
+        idle-timeout: 60000
+        maximum-pool-size: 60
+        minimum-idle: 20
+        max-lifetime: 120000
+        catalog: operating_credit_product_request
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    open-in-view: false
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+
+#Examples for external adapters
+adapters:
+  userMovii:
+    url: "http://localhost:8083/movii-api/movii-user/1.0.0"
+    connectionTimeout: 24000
+    readTimeout: 24000
+    pathSearchUser: "/{phoneNumber}"
+  userMoviired:
+    url: "http://localhost:8083/movii-api/moviired-user/1.0.0"
+    connectionTimeout: 24000
+    readTimeout: 24000
+    pathSearchUser: "/{phoneNumber}"

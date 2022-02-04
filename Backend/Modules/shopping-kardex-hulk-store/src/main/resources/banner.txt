@@ -1,0 +1,9 @@
+${AnsiColor.WHITE}──────────────────────────────────────────────────────────────────────────
+
+ +-++-+   +-++-++-++-++-++-++-++-++-+ +-+ +-++-++-++-++-++-+-+-+-+-+
+ |W||S|   |H||U||L||K||-|S|T||O||R||E| |-| |S||H||O||P||P||I||N||G|
+ +-++-+   +-++-++-++-++-++-++-++-++-+ +-+ +-++-++-++-++-++-+-+-+-+-+
+
+${AnsiColor.WHITE}──────────────────────────────────────────────────────────────────────────
+${AnsiStyle.NORMAL}Copyrigth: ${AnsiStyle.BOLD}@2022. ${AnsiStyle.NORMAL}${AnsiStyle.ITALIC}Todos los derechos reservados.
+${AnsiStyle.NORMAL}Versión... ${AnsiStyle.BOLD}${spring.application.version}${AnsiStyle.NORMAL}
